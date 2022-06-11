@@ -9,7 +9,7 @@ client.on("ready", (client) => {
 
 client.on("messageCreate", (message) => {
   if (message.content === "ping") {
-    message.reply("Pong!").catch(console.error);
+    message.reply("github connected").catch(console.error);
   }
 });
 
