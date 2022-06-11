@@ -4,7 +4,7 @@ const client = new Discord.Client({
 });
 
 const isPing = (msg) => {
-  if (/ping/gi.test(msg)) return true;
+  if (/ping/gi.test(msg.content)) return true;
   return false;
 };
 
@@ -16,7 +16,7 @@ client.on("messageCreate", (message) => {
   // if (message.content === "ping") {
   // message.reply("最高か").catch(console.error);
   // }
-  if (isPing(msg.content)) {
+  if (isPing(message)) {
     message.reply("最高か").catch(console.error);
   }
 });
