@@ -15,4 +15,4 @@ https://qiita.com/InkoHX/items/590b5f15426a6e813e92
 
 git push origin master
 キメたら自動的にデプロイする予定です。
-多分出来てます。
+多分出来てます
