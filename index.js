@@ -4,7 +4,8 @@ const client = new Discord.Client({
 });
 
 const isPing = (msg) => {
-  if (/ping/.test(msg.content)) return true;
+  if (/ping/gi.test(msg)) return true;
+  return false;
 };
 
 client.on("ready", (client) => {
