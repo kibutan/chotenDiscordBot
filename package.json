@@ -1,0 +1,22 @@
+{
+  "name": "choten",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/choten.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "16.x"
+  },
+  "dependencies": {
+    "discord.js": "^13.8.0"
+  }
+}
