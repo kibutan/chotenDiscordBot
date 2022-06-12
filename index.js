@@ -23,7 +23,9 @@ client.on("messageCreate", (message) => {
     message.react("🤔").then(console.log).catch(console.error);
   }
   if (isPong(message)) {
-    message.reply("なんでやねん").catch(console.error);
+    message
+      .reply({ files: ["https://picsum.photos/200"] })
+      .catch(console.error);
     message.react("👏").then(console.log).catch(console.error);
   }
 });
