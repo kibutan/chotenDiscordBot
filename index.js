@@ -8,6 +8,11 @@ const isPing = (msg) => {
   return false;
 };
 
+const isPong = (msg) => {
+  if (/pong/gi.test(msg.content)) return true;
+  return false;
+};
+
 client.on("ready", (client) => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -16,6 +21,10 @@ client.on("messageCreate", (message) => {
   if (isPing(message)) {
     message.reply("最高か").catch(console.error);
     message.react("🤔").then(console.log).catch(console.error);
+  }
+  if (isPong(message)) {
+    message.reply("なんでやねん").catch(console.error);
+    message.react("👏").then(console.log).catch(console.error);
   }
 });
 
