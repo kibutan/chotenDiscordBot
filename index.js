@@ -8,6 +8,11 @@ const isPing = (msg) => {
   return false;
 };
 
+const isPic = (msg) => {
+  if (/Pic/gi.test(msg.content)) return true;
+  return false;
+};
+
 client.on("ready", (client) => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -18,6 +23,8 @@ client.on("messageCreate", (message) => {
   // }
   if (isPing(message)) {
     message.reply("最高か").catch(console.error);
+  } else if (isPic(message)) {
+    message.send({ files: ["https://picsum.photos/200"] });
   }
 });
 
