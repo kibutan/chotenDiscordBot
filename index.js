@@ -24,9 +24,10 @@ client.on("messageCreate", (message) => {
   }
   if (isPong(message)) {
     message
-      .reply({
-        files: [new Discord.MessageAttachment("https://picsum.photos/200")],
-      })
+      .reply(
+        "image",
+        new Discord.MessageAttachment("https://picsum.photos/200")
+      )
       .catch(console.error);
     message.react("👏").then(console.log).catch(console.error);
   }
