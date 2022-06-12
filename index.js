@@ -15,6 +15,7 @@ client.on("ready", (client) => {
 client.on("messageCreate", (message) => {
   if (isPing(message)) {
     message.reply("最高か").catch(console.error);
+    message.react("🤔").then(console.log).catch(console.error);
   }
 });
 
