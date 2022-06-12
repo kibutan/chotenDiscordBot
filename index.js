@@ -8,8 +8,8 @@ const isPing = (msg) => {
   return false;
 };
 
-const isPic = (msg) => {
-  if (/Pic/gi.test(msg.content)) return true;
+const isTime = (msg) => {
+  if (/Time/gi.test(msg.content)) return true;
   return false;
 };
 
@@ -23,8 +23,10 @@ client.on("messageCreate", (message) => {
   // }
   if (isPing(message)) {
     message.reply("最高か").catch(console.error);
-  } else if (isPic(message)) {
-    message.send({ files: ["https://picsum.photos/200"] });
+  }
+  if (isTime(message)) {
+    date = new Date();
+    message.replay(String(date));
   }
 });
 
