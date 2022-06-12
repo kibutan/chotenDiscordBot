@@ -23,12 +23,8 @@ client.on("messageCreate", (message) => {
     message.react("🤔").then(console.log).catch(console.error);
   }
   if (isPong(message)) {
-    message
-      .reply(
-        "image",
-        new Discord.MessageAttachment("https://picsum.photos/200")
-      )
-      .catch(console.error);
+    const image = new Discord.MessageAttachment("https://picsum.photos/200");
+    message.reply("image", image).catch(console.error);
     message.react("👏").then(console.log).catch(console.error);
   }
 });
