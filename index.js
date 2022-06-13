@@ -24,8 +24,9 @@ client.on("messageCreate", (message) => {
     message.react("👏").then(console.log).catch(console.error);
   }
   if (isPong(message)) {
-    const image = new Discord.MessageAttachment("./pic/dance.gif");
-    message.reply("image", image).catch(console.error);
+    message
+      .reply({ files: [new Discord.MessageAttachment("./pic/dance.gif")] })
+      .catch(console.error);
     message.react("💃").then(console.log).catch(console.error);
   }
 });
