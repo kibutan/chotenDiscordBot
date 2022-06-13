@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES"],
 });
@@ -20,12 +21,12 @@ client.on("ready", (client) => {
 client.on("messageCreate", (message) => {
   if (isPing(message)) {
     message.reply("最高か").catch(console.error);
-    message.react("🤔").then(console.log).catch(console.error);
+    message.react("👏").then(console.log).catch(console.error);
   }
   if (isPong(message)) {
-    const image = new Discord.MessageAttachment("https://picsum.photos/200");
+    const image = new Discord.MessageAttachment("./pic/dance.gif");
     message.reply("image", image).catch(console.error);
-    message.react("👏").then(console.log).catch(console.error);
+    message.react("💃").then(console.log).catch(console.error);
   }
 });
 
