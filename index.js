@@ -32,8 +32,8 @@ client.on("messageCreate", (message) => {
   }
 });
 
-cron.schedule("30 * * * * *", () => {
-  client.channels.cache.get("881408091986481162").send("メッセージ");
-});
+// cron.schedule("30 * * * * *", () => {
+//   client.channels.cache.get("881408091986481162").send("メッセージ");
+// });
 
 client.login().catch(console.error);
