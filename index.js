@@ -32,4 +32,8 @@ client.on("messageCreate", (message) => {
   }
 });
 
+cron.schecule("30 * * * * *", () => {
+  client.channels.cache.get("881408091986481162").send("メッセージ");
+});
+
 client.login().catch(console.error);
