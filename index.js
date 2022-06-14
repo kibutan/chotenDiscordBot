@@ -19,7 +19,7 @@ client.on("ready", (client) => {
 });
 
 client.on("messageCreate", (message) => {
-  date = new Date();
+  const date = new Date();
   if (isPing(message)) {
     message.reply("最高か:" + date).catch(console.error);
     message.react("👏").then(console.log).catch(console.error);
