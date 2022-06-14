@@ -19,8 +19,9 @@ client.on("ready", (client) => {
 });
 
 client.on("messageCreate", (message) => {
+  date = new Date();
   if (isPing(message)) {
-    message.reply("最高か").catch(console.error);
+    message.reply("最高か:" + date).catch(console.error);
     message.react("👏").then(console.log).catch(console.error);
   }
   if (isPong(message)) {
