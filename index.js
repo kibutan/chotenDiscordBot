@@ -32,7 +32,7 @@ client.on("messageCreate", (message) => {
   }
 });
 
-cron.schedule("* 13 * * *", () => {
+cron.schedule("30 13 * * *", () => {
   client.channels.cache
     .get("881408091986481162")
     .send(
