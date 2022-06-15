@@ -32,9 +32,14 @@ client.on("messageCreate", (message) => {
   }
 });
 
-cron.schedule("* * * * *", () => {
-  let day = new Date();
-  client.channels.cache.get("881408091986481162").send("Now :" + day);
+cron.schedule("* 13 * * *", () => {
+  client.channels.cache
+    .get("881408091986481162")
+    .send(
+      "ジェルばんは！\n" +
+        "あなたのインターネット・エンジェル超てんちゃんだよ💖\n" +
+        "出会い厨と指示厨以外は仲良くしてね‼️"
+    );
 });
 
 client.login().catch(console.error);
