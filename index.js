@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-// const cron = require("node-cron");
+const cron = require("node-cron");
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES"],
 });
@@ -32,8 +32,9 @@ client.on("messageCreate", (message) => {
   }
 });
 
-// cron.schedule("30 * * * * *", () => {
-//   client.channels.cache.get("881408091986481162").send("メッセージ");
-// });
+cron.schedule("* * * * *", () => {
+  let day = new Date();
+  client.channels.cache.get("881408091986481162").send("Now :" + day);
+});
 
 client.login().catch(console.error);
