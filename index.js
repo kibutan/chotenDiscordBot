@@ -1,3 +1,5 @@
+const fs = require("node:fs");
+const path = require("node:path");
 const Discord = require("discord.js");
 const cron = require("node-cron");
 const dotenv = require("dotenv");
@@ -6,6 +8,19 @@ dotenv.config();
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES"],
 });
+
+client.commands = new Discord.Collection();
+const commandsPath = path.join(__dirname, "commands");
+const commandFiles = fs
+  .readdirSync(commandsPath)
+  .filter((file) => file.endsWith(".js"));
+
+for (const file of commandFiles) {
+  console.log("file", file);
+  const filePath = path.join(commandsPath, file);
+  const command = require(filePath);
+  client.commands.set(command.data.name, command);
+}
 
 const isPing = (msg) => {
   if (/ping/gi.test(msg.content)) return true;
@@ -37,7 +52,7 @@ client.on("messageCreate", (message) => {
 // UTC13時 = 日本時間22時
 cron.schedule("0 0 13 * * *", () => {
   client.channels.cache
-    .get("881408091986481162")
+    .get(process.env.BOT_CHANNEL_ID)
     .send(
       "ジェルばんは！\n" +
         "あなたのインターネット・エンジェル超てんちゃんだよ💖\n" +
