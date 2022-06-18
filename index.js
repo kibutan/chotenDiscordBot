@@ -53,7 +53,7 @@ client.on("messageCreate", (message) => {
 // UTC13時 = 日本時間22時
 cron.schedule("0 0 13 * * *", () => {
   client.channels.cache
-    .get(process.env.BOT_CHANNEL_ID)
+    .get("881408091986481162")
     .send(
       "ジェルばんは！\n" +
         "あなたのインターネット・エンジェル超てんちゃんだよ💖\n" +
