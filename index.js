@@ -8,22 +8,6 @@ const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES"],
 });
 
-<<<<<<< HEAD
-=======
-// client.commands = new Discord.Collection();
-// const commandsPath = path.join(__dirname, "commands");
-// const commandFiles = fs
-//   .readdirSync(commandsPath)
-//   .filter((file) => file.endsWith(".js"));
-
-// for (const file of commandFiles) {
-//   console.log("file", file);
-//   const filePath = path.join(commandsPath, file);
-//   const command = require(filePath);
-//   client.commands.set(command.data.name, command);
-// }
-
->>>>>>> 3d31be491bc64007c57cf787b31b42421b3ebae2
 const isPing = (msg) => {
   if (/ping/gi.test(msg.content)) return true;
   return false;
