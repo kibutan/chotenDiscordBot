@@ -14,6 +14,13 @@ const isPong = (msg) => {
   return false;
 };
 
+const row = new MessageActionRow().addComponents(
+  new MessageButton()
+    .setCustomId("primary")
+    .setLabel("Primary")
+    .setStyle("PRIMARY")
+);
+
 client.on("ready", (client) => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
