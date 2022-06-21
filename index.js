@@ -18,7 +18,7 @@ const isPong = (msg) => {
 const row = new MessageActionRow().addComponents(
   new MessageButton()
     .setCustomId("primary")
-    .setLabel("Primary")
+    .setLabel("†昇天†")
     .setStyle("PRIMARY")
 );
 
@@ -38,6 +38,12 @@ client.on("messageCreate", (message) => {
       .reply({ files: [new Discord.MessageAttachment("./pic/dance.gif")] })
       .catch(console.error);
     message.react("💃").then(console.log).catch(console.error);
+  }
+});
+
+client.on("interactionCreate", async (interaction) => {
+  if (interaction.customId === "primary") {
+    await interaction.reply({ content: "†昇天†" });
   }
 });
 
