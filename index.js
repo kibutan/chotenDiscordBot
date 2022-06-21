@@ -14,13 +14,22 @@ const isPong = (msg) => {
   return false;
 };
 
+const row = new MessageActionRow().addComponents(
+  new MessageButton()
+    .setCustomId("primary")
+    .setLabel("†昇天†")
+    .setStyle("PRIMARY")
+);
+
 client.on("ready", (client) => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on("messageCreate", (message) => {
   if (isPing(message)) {
-    message.reply("最高か").catch(console.error);
+    message
+      .reply({ content: "最高か", components: [row] })
+      .catch(console.error);
     message.react("👏").then(console.log).catch(console.error);
   }
   if (isPong(message)) {
@@ -32,13 +41,13 @@ client.on("messageCreate", (message) => {
 });
 
 cron.schedule("0 0 13 * * *", () => {
-  client.channels.cache
-    .get("881408091986481162")
-    .send(
+  client.channels.cache.get("881408091986481162").send({
+    content:
       "ジェルばんは！\n" +
-        "あなたのインターネット・エンジェル超てんちゃんだよ💖\n" +
-        "出会い厨と指示厨以外は仲良くしてね‼️"
-    );
+      "あなたのインターネット・エンジェル超てんちゃんだよ💖\n" +
+      "出会い厨と指示厨以外は仲良くしてね‼️",
+    components: [row],
+  });
 });
 
 client.login().catch(console.error);
