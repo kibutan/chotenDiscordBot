@@ -39,6 +39,9 @@ client.on("messageCreate", (message) => {
       .catch(console.error);
     message.react("💃").then(console.log).catch(console.error);
   }
+  if (!interaction.isButton()) {
+    client.channels.cache.get("881408091986481162").send("†昇天†");
+  }
 });
 
 cron.schedule("0 0 13 * * *", () => {
