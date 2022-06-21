@@ -3,6 +3,7 @@ const cron = require("node-cron");
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_MESSAGES"],
 });
+const { MessageActionRow, MessageButton } = require("discord.js");
 
 const isPing = (msg) => {
   if (/ping/gi.test(msg.content)) return true;
@@ -27,7 +28,9 @@ client.on("ready", (client) => {
 
 client.on("messageCreate", (message) => {
   if (isPing(message)) {
-    message.reply({ content: "最高か" }).catch(console.error);
+    message
+      .reply({ content: "最高か", components: [row] })
+      .catch(console.error);
     message.react("👏").then(console.log).catch(console.error);
   }
   if (isPong(message)) {
