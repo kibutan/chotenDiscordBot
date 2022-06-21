@@ -19,8 +19,17 @@ client.on("ready", (client) => {
 });
 
 client.on("messageCreate", (message) => {
+  const row = new MessageActionRow().addComponents(
+    new MessageButton()
+      .setCustomId("primary")
+      .setLabel("†昇天†")
+      .setStyle("PRIMARY")
+  );
+
   if (isPing(message)) {
-    message.reply("最高か").catch(console.error);
+    message
+      .reply({ content: "最高か", components: [row] })
+      .catch(console.error);
     message.react("👏").then(console.log).catch(console.error);
   }
   if (isPong(message)) {
