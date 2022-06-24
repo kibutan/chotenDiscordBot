@@ -8,7 +8,7 @@ const { Routes } = require("discord-api-types/v9");
 
 // Slash Command definition
 const commands = [
-  new SlashCommandBuilder().setName("doggy").setDescription("Random dog!"),
+  new SlashCommandBuilder().setName("dog").setDescription("Random dog!"),
 ].map((command) => command.toJSON());
 
 //for resisting commands.json
