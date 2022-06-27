@@ -1,26 +1,34 @@
-const Discord = require("discord.js");
-const cron = require("node-cron");
+// ローカル開発用モジュール
 // const dotenv = require("dotenv");
 // dotenv.config();
-const { SlashCommandBuilder } = require("@discordjs/builders");
+
+// command/commandName.js 検索に使う
+const fs = require("node:fs");
+const path = require("node:path");
+
+const {
+  Client,
+  Collection,
+  Intents,
+  MessageAttachment,
+} = require("discord.js");
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const cron = require("node-cron");
+
+// SlashCommand登録用モジュール
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
-
-// Slash Command definition
-const commands = [
-  new SlashCommandBuilder().setName("dog").setDescription("Random dog!"),
-].map((command) => command.toJSON());
-
-//for resisting commands.json
-const rest = new REST({ version: "9" }).setToken(process.env.DISCORD_TOKEN);
-
-// const dotenv = require("dotenv");
-// dotenv.config();
-const { request } = require("undici");
-
-const client = new Discord.Client({
-  intents: ["GUILDS", "GUILD_MESSAGES"],
-});
+const commandsArray = [];
+const commandsPath = path.join(__dirname, "commands");
+const commandFiles = fs
+  .readdirSync(commandsPath)
+  .filter((file) => file.endsWith(".js"));
+client.commands = new Collection();
+for (const file of commandFiles) {
+  const filePath = path.join(commandsPath, file);
+  const command = require(filePath);
+  client.commands.set(command.data.name, command);
+}
 
 const { MessageActionRow, MessageButton } = require("discord.js");
 
@@ -32,10 +40,6 @@ async function getJSONResponse(body) {
   }
   return JSON.parse(fullBody);
 }
-const isPing = (msg) => {
-  if (/ping/gi.test(msg.content)) return true;
-  return false;
-};
 
 const isPong = (msg) => {
   if (/pong/gi.test(msg.content)) return true;
@@ -51,6 +55,12 @@ const row = new MessageActionRow().addComponents(
 
 client.on("ready", (client) => {
   console.log(`Logged in as ${client.user.tag}!`);
+  for (const file of commandFiles) {
+    const filePath = path.join(commandsPath, file);
+    const command = require(filePath);
+    commandsArray.push(command.data.toJSON());
+  }
+  const rest = new REST({ version: "9" }).setToken(process.env.DISCORD_TOKEN);
   rest
     .put(
       Routes.applicationGuildCommands(
@@ -58,7 +68,7 @@ client.on("ready", (client) => {
         process.env.GUILD_ID
       ),
       {
-        body: commands,
+        body: commandsArray,
       }
     )
     .then(() => console.log("Successfully registered application commands."))
@@ -66,34 +76,29 @@ client.on("ready", (client) => {
 });
 
 client.on("messageCreate", (message) => {
-  if (isPing(message)) {
-    message
-      .reply({ content: "最高か", components: [row] })
-      .catch(console.error);
-    message.react("👏").then(console.log).catch(console.error);
-  }
   if (isPong(message)) {
     message
-      .reply({ files: [new Discord.MessageAttachment("./pic/dance.gif")] })
+      .reply({ files: [new MessageAttachment("./pic/dance.gif")] })
       .catch(console.error);
     message.react("💃").then(console.log).catch(console.error);
   }
 });
 
 client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isCommand()) return;
-
-  const { commandName } = interaction;
-  await interaction.deferReply();
-
   if (interaction.customId === "primary") {
     await interaction.reply({ content: "†昇天†" });
   }
-  if (commandName === "dog") {
-    const dogResult = await request("https://dog.ceo/api/breeds/image/random");
-    const { message } = await getJSONResponse(dogResult.body);
-    console.log({ message });
-    interaction.editReply({ files: [message] });
+  if (!interaction.isCommand()) return;
+  const command = client.commands.get(interaction.commandName);
+  if (!command) return;
+  try {
+    await command.execute(interaction);
+  } catch (error) {
+    console.error(error);
+    await interaction.reply({
+      content: "There was an error while executing this command!",
+      ephemeral: true,
+    });
   }
 });
 
