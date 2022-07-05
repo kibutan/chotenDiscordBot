@@ -32,26 +32,10 @@ for (const file of commandFiles) {
 
 const { MessageActionRow, MessageButton } = require("discord.js");
 
-async function getJSONResponse(body) {
-  let fullBody = "";
-  for await (const data of body) {
-    console.log("data" + data);
-    fullBody += data.toString();
-  }
-  return JSON.parse(fullBody);
-}
-
 const isPong = (msg) => {
   if (/pong/gi.test(msg.content)) return true;
   return false;
 };
-
-const row = new MessageActionRow().addComponents(
-  new MessageButton()
-    .setCustomId("primary")
-    .setLabel("†昇天†")
-    .setStyle("PRIMARY")
-);
 
 client.on("ready", (client) => {
   console.log(`Logged in as ${client.user.tag}!`);
