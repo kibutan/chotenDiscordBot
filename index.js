@@ -12,7 +12,9 @@ const {
   Intents,
   MessageAttachment,
 } = require("discord.js");
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+});
 const cron = require("node-cron");
 
 // SlashCommand登録用モジュール
@@ -34,6 +36,16 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 
 const isPong = (msg) => {
   if (/pong/gi.test(msg.content)) return true;
+  return false;
+};
+
+const isCmp = (msg) => {
+  if (
+    /^(((?:ち|チ|ﾁ)(?:○|ん|ン|ﾝ)(?:ぽ|ポ|ﾎﾟ)))$|^((?:ち|チ|ﾁ)(?:ん|ン|ﾝ)(?:ち|チ|ﾁ)(?:○|ん|ン|ﾝ))$|^(chi[n|m]po)$/gi.test(
+      msg.content
+    )
+  )
+    return true;
   return false;
 };
 
@@ -65,6 +77,9 @@ client.on("messageCreate", (message) => {
       .reply({ files: [new MessageAttachment("./pic/dance.gif")] })
       .catch(console.error);
     message.react("💃").then(console.log).catch(console.error);
+  }
+  if (isCmp(message)) {
+    message.react("943508904292261918").then(console.log).catch(console.error);
   }
 });
 
