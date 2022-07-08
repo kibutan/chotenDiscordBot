@@ -41,7 +41,7 @@ const isPong = (msg) => {
 
 const isCmp = (msg) => {
   if (
-    /^(((?:ち|チ|ﾁ)(?:○|ん|ン|ﾝ)(?:ぽ|ポ|ﾎﾟ|こ|コ|ｺ)))$|^((?:ち|チ|ﾁ)(?:○|ん|ン|ﾝ)(?:ち|チ|ﾁ)(?:○|ん|ン|ﾝ))$|^(chi[n|m]po)$/gi.test(
+    /(((?:ち|チ|ﾁ)(?:○|ん|ン|ﾝ)(?:ぽ|ポ|ﾎﾟ|こ|コ|ｺ)))|((?:ち|チ|ﾁ)(?:○|ん|ン|ﾝ)(?:ち|チ|ﾁ)(?:○|ん|ン|ﾝ))|(chi[n|m]po)/gi.test(
       msg.content
     )
   )
@@ -72,6 +72,7 @@ client.on("ready", (client) => {
 });
 
 client.on("messageCreate", (message) => {
+  if (message.author.bot) return;
   if (isPong(message)) {
     message
       .reply({ files: [new MessageAttachment("./pic/dance.gif")] })
