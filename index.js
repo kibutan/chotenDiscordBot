@@ -103,13 +103,20 @@ client.on("interactionCreate", async (interaction) => {
 });
 
 cron.schedule("0 0 13 * * *", () => {
-  client.channels.cache
-    .get("881408091986481162")
-    .send(
-      "ジェルばんは！\n" +
-        "あなたのインターネット・エンジェル超てんちゃんだよ💖\n" +
-        "出会い厨と指示厨以外は仲良くしてね‼️"
-    );
+  client.channels.cache.get("881408091986481162").send({
+    embeds: [
+      {
+        color: 0xa52e4b,
+        image: {
+          url: "https://cdn.akamai.steamstatic.com/steam/apps/1451940/extras/bank_jp.gif?t=1656071815",
+        },
+        description:
+          "ジェルばんは！\n" +
+          "あなたのインターネット・エンジェル超てんちゃんだよ💖\n" +
+          "出会い厨と指示厨以外は仲良くしてね‼️",
+      },
+    ],
+  });
 });
 
 client.login().catch(console.error);
