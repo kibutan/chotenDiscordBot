@@ -26,6 +26,18 @@ module.exports = {
     const random = Math.floor(Math.random() * (values.length - 1)) + 1;
     console.log(random);
 
-    await interaction.reply(values[random][0]);
+    await interaction.reply({
+      embeds: [
+        {
+          color: 0xa52e4b,
+          author: {
+            name: "あめちゃん",
+            icon_url:
+              "https://cdn.discordapp.com/attachments/834044144162308120/996351313292054588/icon_poketter_ame_.png",
+          },
+          description: values[random][0],
+        },
+      ],
+    });
   },
 };
