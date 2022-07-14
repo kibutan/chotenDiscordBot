@@ -12,6 +12,13 @@ async function getJSONResponse(body) {
   return JSON.parse(fullBody);
 }
 
+function isURL(string) {
+  res = string.match(
+    /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi
+  );
+  return res !== null;
+}
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("amechan")
@@ -25,19 +32,34 @@ module.exports = {
     console.log(values.length);
     const random = Math.floor(Math.random() * (values.length - 1)) + 1;
     console.log(random);
-
-    await interaction.reply({
-      embeds: [
-        {
-          color: 0xa52e4b,
-          author: {
-            name: "あめちゃん",
-            icon_url:
-              "https://cdn.discordapp.com/attachments/834044144162308120/996351313292054588/icon_poketter_ame_.png",
+    if (isURL(values[random][0])) {
+      await interaction.reply({
+        embeds: [
+          {
+            color: 0xa52e4b,
+            author: {
+              name: "あめちゃん",
+              icon_url:
+                "https://cdn.discordapp.com/attachments/834044144162308120/996351313292054588/icon_poketter_ame_.png",
+            },
+            image: { url: values[random][0] },
           },
-          description: values[random][0],
-        },
-      ],
-    });
+        ],
+      });
+    } else {
+      await interaction.reply({
+        embeds: [
+          {
+            color: 0xa52e4b,
+            author: {
+              name: "あめちゃん",
+              icon_url:
+                "https://cdn.discordapp.com/attachments/834044144162308120/996351313292054588/icon_poketter_ame_.png",
+            },
+            description: values[random][0],
+          },
+        ],
+      });
+    }
   },
 };
