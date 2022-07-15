@@ -10,9 +10,3 @@ https://elements.heroku.com/buildpacks/synicalsyntax/discord.js-heroku
 
 index.js のソースや Procfile のことなど
 https://qiita.com/InkoHX/items/590b5f15426a6e813e92
-
-## デプロイ方法(多分)
-
-git push origin master
-キメたら自動的にデプロイする予定です。
-出来たわ。
