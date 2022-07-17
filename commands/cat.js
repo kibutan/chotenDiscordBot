@@ -17,7 +17,6 @@ module.exports = {
     );
     const res = await getJSONResponse(catResult.body);
     const { url } = res[0];
-    // console.log("catResult", res[0].url, url);
     await interaction.reply({ files: [url] });
   },
 };
