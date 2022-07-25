@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("nadeshiko-eating-shingenmochi")
-    .setDescription("nadeshiko eating shingenmochi"),
+    .setName("agemasen")
+    .setDescription("agemasen"),
   async execute(interaction) {
     await interaction.reply({
       files: [
