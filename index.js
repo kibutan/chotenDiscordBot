@@ -1,6 +1,6 @@
 // ローカル開発用モジュール
-// const dotenv = require("dotenv");
-// dotenv.config();
+const dotenv = require("dotenv");
+dotenv.config();
 
 // command/commandName.js 検索に使う
 const fs = require("node:fs");
@@ -102,7 +102,7 @@ client.on("interactionCreate", async (interaction) => {
   }
 });
 
-cron.schedule("0 0 13 * * *", () => {
+cron.schedule("0 0 22 * * *", () => {
   client.channels.cache.get("881408091986481162").send({
     embeds: [
       {
