@@ -2,11 +2,11 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("dice6")
-    .setDescription("6面サイコロ1個を振ります"),
+    .setName("dice100")
+    .setDescription("100面サイコロ1個を振ります"),
   async execute(interaction) {
-    const random = Math.floor(Math.random() * 5) + 1;
-    // console;
+    const random = Math.floor(Math.random() * 99) + 1;
+    // console.log(random);
     await interaction.reply({ content: String(random) });
   },
 };

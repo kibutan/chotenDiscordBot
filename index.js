@@ -102,7 +102,7 @@ client.on("interactionCreate", async (interaction) => {
   }
 });
 
-cron.schedule("0 0 22 * * *", () => {
+cron.schedule("0 0 13 * * *", () => {
   client.channels.cache.get("881408091986481162").send({
     embeds: [
       {
