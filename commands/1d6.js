@@ -6,7 +6,7 @@ module.exports = {
     .setDescription("6面サイコロ1個を振ります"),
   async execute(interaction) {
     const random = Math.floor(Math.random() * 5) + 1;
-    // console;
+    console.log("1d6:", random);
     await interaction.reply({ content: String(random) });
   },
 };
