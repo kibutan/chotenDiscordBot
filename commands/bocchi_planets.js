@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("bocchi_planets")
-    .setDescription("bocchi_planets"),
+    .setDescription("結局なにも成長などしていなかった…"),
   async execute(interaction) {
     await interaction.reply({
       files: [
