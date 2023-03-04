@@ -10,7 +10,7 @@ module.exports = {
     await wait(10000);
     await interaction.editReply({
       files: [
-        "https://discord.com/channels/848754279783071744/881408091986481162",
+        "https://cdn.discordapp.com/attachments/881408091986481162/1081370383372013598/-_2.gif",
       ],
     });
   },
