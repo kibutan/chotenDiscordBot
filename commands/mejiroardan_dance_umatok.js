@@ -3,8 +3,8 @@ const wait = require("node:timers/promises").setTimeout;
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("goldship_swimsuit_win")
-    .setDescription("goldship_swimsuit_win"),
+    .setName("mejiroardan_dance_umatok")
+    .setDescription("mejiroardan_dance_umatok"),
   async execute(interaction) {
     await interaction.deferReply();
     await wait(10000);
