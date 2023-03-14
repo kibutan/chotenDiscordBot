@@ -3,7 +3,7 @@ const wait = require("node:timers/promises").setTimeout;
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("futeette_futokuneette")
+    .setName("futokuneette")
     .setDescription("女の子足太いよ 太くない 太ぇって!!! 太くねぇって!!!!"),
   async execute(interaction) {
     await interaction.deferReply();
