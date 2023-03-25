@@ -4,7 +4,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("x_ituowarunndayo")
     .setDescription(
-      "いつ終わる!! いつ終わるんだよ!! いつ闘いがおわるんだよーっ!!"
+      "いつ終わる!!いつ終わるんだよ!!いつ闘いがおわるんだよーっ!!"
     ),
   async execute(interaction) {
     await interaction.reply({
